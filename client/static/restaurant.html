@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Меню закладу — Dragon Food</title>
+  <meta name="description" content="Меню ресторану та швидке замовлення страв у сервісі Dragon Food.">
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img src="../assets/logo.svg" alt="Логотип Dragon Food" width="160" height="36">
+      </a>
+      <nav class="nav" aria-label="Головна навігація">
+        <ul class="nav__list">
+          <li><a href="index.html">Головна</a></li>
+          <li><a href="restaurants.html">Заклади</a></li>
+          <li><a href="restaurant.html" aria-current="page">Меню ресторану</a></li>
+          <li><a href="checkout.html">Оформити замовлення</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <button type="button" id="theme-toggle" class="btn btn--pill btn--ghost">Тема</button>
+        <a href="checkout.html" class="btn btn--pill btn--primary">Кошик (<span id="cart-count">0</span>)</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="container restaurant-layout">
+    <section class="menu-section" aria-labelledby="restaurant-name">
+      <header class="restaurant-banner">
+        <h1 id="restaurant-name">Завантаження закладу...</h1>
+        <p>Оберіть страви нижче</p>
+      </header>
+
+      <h2>Меню закладу</h2>
+      <div class="dishes-grid" id="dishes-list"></div>
+    </section>
+
+    <aside class="cart-sidebar" aria-labelledby="cart-title">
+      <h2 id="cart-title">Ваш кошик</h2>
+      <ul class="cart-items" id="cart-items-list">
+        <li>Кошик порожній</li>
+      </ul>
+      <p class="cart-total">Разом до сплати: <strong id="cart-total-sum">0 грн</strong></p>
+      <a href="checkout.html" class="btn btn--pill btn--primary">Оформити замовлення</a>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <time datetime="2026">2026</time> Dragon Food</p>
+    </div>
+  </footer>
+<<<<<<< HEAD
+=======
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
+>>>>>>> 4afb2b4704810546e2db52825cf65ef7a8bd1a92
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
