@@ -13,7 +13,7 @@ export default function CheckoutPage() {
       parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--motion-scale')) || 1;
     setTimeout(() => {
       setLaunchPhase('done');
-    }, 950 * motionScale);
+    }, 950);
   };
 
   return (

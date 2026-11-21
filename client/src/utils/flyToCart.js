@@ -41,7 +41,7 @@ export function triggerFlyToCart(sourceEl, imageUrl = null) {
 
   const motionScale =
     parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--motion-scale')) || 1;
-  const duration = 620 * motionScale;
+  const duration = 650;
 
   const animation = ghost.animate(
     [
@@ -70,3 +70,4 @@ export function triggerFlyToCart(sourceEl, imageUrl = null) {
     ghost.remove();
   };
 }
+
