@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useFetch } from '../hooks/useFetch';
 import RestaurantCard from '../components/RestaurantCard';
+import DragonDreamScene from '../components/DragonDreamScene';
 import Button from '../components/Button';
 
 const CATEGORIES = [
@@ -12,12 +13,43 @@ const CATEGORIES = [
   { id: 'desserts', label: '🍰 Десерти' },
 ];
 
+const EMBERS = [
+  { x: '8%', size: '5px', dur: '4.2s', delay: '0s', drift: '18px' },
+  { x: '16%', size: '7px', dur: '5.1s', delay: '0.8s', drift: '-22px' },
+  { x: '25%', size: '4px', dur: '3.8s', delay: '1.5s', drift: '14px' },
+  { x: '34%', size: '6px', dur: '4.7s', delay: '0.4s', drift: '-16px' },
+  { x: '43%', size: '5px', dur: '5.4s', delay: '2.1s', drift: '26px' },
+  { x: '52%', size: '8px', dur: '4.5s', delay: '1.1s', drift: '-28px' },
+  { x: '60%', size: '4px', dur: '3.9s', delay: '2.6s', drift: '15px' },
+  { x: '68%', size: '6px', dur: '4.8s', delay: '0.6s', drift: '-19px' },
+  { x: '75%', size: '7px', dur: '5.2s', delay: '1.8s', drift: '22px' },
+  { x: '82%', size: '5px', dur: '4.1s', delay: '0.3s', drift: '-24px' },
+  { x: '89%', size: '6px', dur: '4.9s', delay: '1.4s', drift: '16px' },
+  { x: '94%', size: '4px', dur: '3.7s', delay: '2.3s', drift: '-12px' },
+];
+
 export default function HomePage() {
   const { data, loading } = useFetch('/data.json');
 
   return (
     <div className="container">
       <section className="hero">
+        <div className="hero__embers" aria-hidden="true">
+          {EMBERS.map((e, idx) => (
+            <span
+              key={idx}
+              className="ember"
+              style={{
+                '--x': e.x,
+                '--size': e.size,
+                '--dur': e.dur,
+                '--delay': e.delay,
+                '--drift': e.drift,
+              }}
+            />
+          ))}
+        </div>
+
         <div className="hero__grid">
           <div>
             <span className="badge">⚡ Доставка за 25–35 хв</span>
@@ -34,11 +66,8 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <img
-            src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
-            alt="Фірмовий бургер Dragon Food"
-            className="hero__img"
-          />
+
+          <DragonDreamScene />
         </div>
       </section>
 
@@ -60,7 +89,11 @@ export default function HomePage() {
       <section>
         <h2 style={{ marginBottom: '18px' }}>Популярні заклади сьогодні</h2>
         {loading ? (
-          <p>Завантаження закладів...</p>
+          <div className="cards-grid">
+            {[1, 2, 3].map((n) => (
+              <div key={n} className="skeleton-box" style={{ height: '270px' }} />
+            ))}
+          </div>
         ) : (
           <div className="cards-grid">
             {data?.restaurants?.slice(0, 3).map((r) => (
