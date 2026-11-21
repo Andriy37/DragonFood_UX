@@ -726,3 +726,26 @@ img {
     opacity: 0;
   }
 }
+
+.fly-to-cart-ghost {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  font-size: 22px;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.55);
+  border: 2px solid #a7f3d0;
+  will-change: transform, opacity;
+}
+
+.fly-to-cart-ghost img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
