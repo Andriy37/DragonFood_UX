@@ -749,3 +749,90 @@ img {
   height: 100%;
   object-fit: cover;
 }
+
+
+@keyframes windowFlyUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(14px) scale(0.98);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-115vh) scale(0.88);
+  }
+}
+
+.checkout-card-fly-up {
+  animation: windowFlyUp calc(0.75s * var(--motion-scale)) var(--ease-spring) forwards;
+  pointer-events: none;
+}
+
+.dragon-launch-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.dragon-lightning-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(16, 185, 129, 0.32), transparent 68%);
+  animation: lightningPulse calc(0.9s * var(--motion-scale)) ease-out forwards;
+}
+
+@keyframes lightningPulse {
+  0% { opacity: 0; transform: scale(0.6); }
+  35% { opacity: 1; transform: scale(1.15); }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+
+.dragon-flyer {
+  position: absolute;
+  left: 15%;
+  bottom: 18%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 84px;
+  filter: drop-shadow(0 0 24px rgba(16, 185, 129, 0.95));
+  animation: dragonLightningFly calc(1.15s * var(--motion-scale)) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.dragon-flyer__trail {
+  font-size: 46px;
+  letter-spacing: -6px;
+  animation: trailFlicker calc(0.18s * var(--motion-scale)) infinite alternate;
+}
+
+@keyframes trailFlicker {
+  from { opacity: 0.65; transform: scaleX(0.9); }
+  to { opacity: 1; transform: scaleX(1.25); }
+}
+
+@keyframes dragonLightningFly {
+  0% {
+    opacity: 0;
+    transform: translate3d(-10vw, 20vh, 0) scale(0.45) rotate(-12deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translate3d(18vw, 4vh, 0) scale(1.15) rotate(-18deg);
+  }
+  65% {
+    opacity: 1;
+    transform: translate3d(52vw, -28vh, 0) scale(1.25) rotate(-22deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(110vw, -75vh, 0) scale(0.8) rotate(-25deg);
+  }
+}

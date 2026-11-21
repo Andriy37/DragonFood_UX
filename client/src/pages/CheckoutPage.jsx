@@ -1,14 +1,28 @@
+import { useState } from 'react';
 import { useStore } from '../context/StoreContext';
 import CheckoutForm from '../components/CheckoutForm';
+import DragonOrderLaunch from '../components/DragonOrderLaunch';
 
 export default function CheckoutPage() {
   const { cart, totalPrice } = useStore();
+  const [launchPhase, setLaunchPhase] = useState('idle'); // 'idle' | 'flying' | 'done'
+
+  const handleLaunch = () => {
+    setLaunchPhase('flying');
+    const motionScale =
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--motion-scale')) || 1;
+    setTimeout(() => {
+      setLaunchPhase('done');
+    }, 950 * motionScale);
+  };
 
   return (
     <div className="container" style={{ paddingTop: '32px', maxWidth: '640px' }}>
+      <DragonOrderLaunch active={launchPhase === 'flying'} />
+
       <h1 style={{ marginBottom: '20px' }}>Оформлення замовлення</h1>
 
-      {cart.length > 0 && (
+      {cart.length > 0 && launchPhase === 'idle' && (
         <div
           style={{
             background: 'var(--color-surface)',
@@ -32,6 +46,7 @@ export default function CheckoutPage() {
       )}
 
       <div
+        className={launchPhase === 'flying' ? 'checkout-card-fly-up' : launchPhase === 'done' ? 'modal-content' : ''}
         style={{
           background: 'var(--color-surface)',
           border: '1px solid var(--color-border)',
@@ -39,7 +54,7 @@ export default function CheckoutPage() {
           padding: '24px',
         }}
       >
-        <CheckoutForm />
+        <CheckoutForm onLaunch={handleLaunch} />
       </div>
     </div>
   );

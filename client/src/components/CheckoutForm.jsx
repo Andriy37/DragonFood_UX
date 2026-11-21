@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useStore } from '../context/StoreContext';
 import Button from './Button';
 
-export default function CheckoutForm({ onSuccess }) {
+export default function CheckoutForm({ onSuccess, onLaunch }) {
   const { cart, totalPrice, clearCart } = useStore();
   const [form, setForm] = useState({
     customerName: '',
@@ -39,7 +39,6 @@ export default function CheckoutForm({ onSuccess }) {
       totalPrice,
     };
 
-    // Якщо підключений Node.js сервер (ПР 8), відправляємо на API
     const apiUrl = import.meta.env.VITE_API_URL;
     if (apiUrl) {
       try {
@@ -53,6 +52,7 @@ export default function CheckoutForm({ onSuccess }) {
       }
     }
 
+    onLaunch?.();
     setSubmittedOrder(orderPayload);
     clearCart();
   };
@@ -60,7 +60,31 @@ export default function CheckoutForm({ onSuccess }) {
   if (submittedOrder) {
     return (
       <div style={{ textAlign: 'center', padding: '16px 0' }}>
-        <div style={{ fontSize: '3.2rem', marginBottom: '10px' }}>🎉</div>
+        <svg
+          width="64"
+          height="64"
+          viewBox="0 0 52 52"
+          style={{ margin: '0 auto 12px', display: 'block' }}
+          aria-hidden="true"
+        >
+          <circle
+            cx="26"
+            cy="26"
+            r="24"
+            fill="rgba(16, 185, 129, 0.14)"
+            stroke="#10b981"
+            strokeWidth="2.5"
+          />
+          <path
+            className="success-checkmark-path"
+            fill="none"
+            stroke="#10b981"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15 27l7 7 15-16"
+          />
+        </svg>
         <h3 style={{ fontSize: '1.4rem', marginBottom: '8px' }}>Замовлення прийнято!</h3>
         <p style={{ color: 'var(--color-text-muted)', marginBottom: '16px' }}>
           Кур'єр вирушить за адресою: <strong>вул. {submittedOrder.street}, буд. {submittedOrder.house}, кв. {submittedOrder.apartment}</strong>
